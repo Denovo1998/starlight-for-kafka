@@ -47,6 +47,7 @@ import org.apache.kafka.common.requests.AbstractResponse;
 import org.apache.kafka.common.requests.ApiVersionsRequest;
 import org.apache.kafka.common.requests.KopResponseUtils;
 import org.apache.kafka.common.requests.ListOffsetRequestV0;
+import org.apache.kafka.common.requests.ProduceRequest;
 import org.apache.kafka.common.requests.RequestHeader;
 import org.apache.kafka.common.requests.ResponseCallbackWrapper;
 import org.apache.kafka.common.requests.ResponseHeader;
@@ -380,6 +381,12 @@ public abstract class KafkaCommandDecoder extends ChannelInboundHandlerAdapter {
                     case DESCRIBE_CLUSTER:
                         handleDescribeCluster(kafkaHeaderAndRequest, responseFuture);
                         break;
+                    case DESCRIBE_CLIENT_QUOTAS:
+                        handleDescribeClientQuotas(kafkaHeaderAndRequest, responseFuture);
+                        break;
+                    case ALTER_CLIENT_QUOTAS:
+                        handleAlterClientQuotas(kafkaHeaderAndRequest, responseFuture);
+                        break;
                     default:
                         handleError(kafkaHeaderAndRequest, responseFuture);
                 }
@@ -449,10 +456,20 @@ public abstract class KafkaCommandDecoder extends ChannelInboundHandlerAdapter {
             if (responseFuture.isDone()) {
                 responseFuture.thenAccept(response -> {
                     if (response == null) {
-                        // It should not be null, just check it for safety
-                        log.error("[{}] Unexpected null completed future for request {}",
-                                ctx.channel(), request.getHeader());
-                        sendErrorResponse(request, channel, new ApiException("response is null"), true);
+                        boolean allowNullResponse = apiKey == ApiKeys.PRODUCE
+                                && request.getRequest() instanceof ProduceRequest
+                                && ((ProduceRequest) request.getRequest()).acks() == 0;
+                        if (allowNullResponse) {
+                            // Produce acks=0: no response expected. Just release the request.
+                            request.close();
+                            requestStats.getRequestStatsLogger(apiKey, KopServerStats.REQUEST_QUEUED_LATENCY)
+                                    .registerSuccessfulEvent(nanoSecondsSinceCreated, TimeUnit.NANOSECONDS);
+                            return;
+                        }
+                        log.error("[{}] Unexpected null response. request={}", channel, request.getHeader());
+                        sendErrorResponse(request, channel, new ApiException("unexpected null response"), true);
+                        requestStats.getRequestStatsLogger(apiKey, KopServerStats.REQUEST_QUEUED_LATENCY)
+                                .registerFailedEvent(nanoSecondsSinceCreated, TimeUnit.NANOSECONDS);
                         return;
                     }
                     if (log.isDebugEnabled()) {
@@ -638,6 +655,13 @@ public abstract class KafkaCommandDecoder extends ChannelInboundHandlerAdapter {
 
     protected abstract void
     handleDescribeCluster(KafkaHeaderAndRequest kafkaHeaderAndRequest, CompletableFuture<AbstractResponse> response);
+
+    protected abstract void
+    handleDescribeClientQuotas(KafkaHeaderAndRequest kafkaHeaderAndRequest,
+                               CompletableFuture<AbstractResponse> response);
+
+    protected abstract void
+    handleAlterClientQuotas(KafkaHeaderAndRequest kafkaHeaderAndRequest, CompletableFuture<AbstractResponse> response);
 
 
     public static class KafkaHeaderAndRequest {
