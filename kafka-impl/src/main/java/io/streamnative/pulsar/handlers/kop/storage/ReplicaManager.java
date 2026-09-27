@@ -20,6 +20,7 @@ import io.streamnative.pulsar.handlers.kop.KafkaServiceConfiguration;
 import io.streamnative.pulsar.handlers.kop.KafkaTopicLookupService;
 import io.streamnative.pulsar.handlers.kop.MessageFetchContext;
 import io.streamnative.pulsar.handlers.kop.RequestStats;
+import io.streamnative.pulsar.handlers.kop.exceptions.KoPTopicInitializeException;
 import io.streamnative.pulsar.handlers.kop.utils.KopTopic;
 import io.streamnative.pulsar.handlers.kop.utils.delayed.DelayedOperation;
 import io.streamnative.pulsar.handlers.kop.utils.delayed.DelayedOperationKey;
@@ -52,6 +53,7 @@ import org.apache.kafka.common.utils.Time;
 import org.apache.pulsar.broker.service.BrokerServiceException;
 import org.apache.pulsar.broker.service.plugin.EntryFilter;
 import org.apache.pulsar.client.api.PulsarClientException;
+import org.apache.pulsar.common.util.FutureUtil;
 
 /**
  * Used to append records. Mapping to Kafka ReplicaManager.scala.
@@ -176,7 +178,8 @@ public class ReplicaManager {
                                 .thenAccept(offset -> addPartitionResponse.accept(topicPartition,
                                         new ProduceResponse.PartitionResponse(Errors.NONE, offset, -1L, -1L)))
                     .exceptionally(ex -> {
-                        if (isCannotLoadTopicError(ex)) {
+                        if (isCannotLoadTopicError(ex)
+                                || FutureUtil.unwrapCompletionException(ex) instanceof KoPTopicInitializeException) {
                             log.error("Cannot load topic error while handling append for {}", fullPartitionName, ex);
                             addPartitionResponse.accept(topicPartition,
                                     new ProduceResponse.PartitionResponse(Errors.NOT_LEADER_OR_FOLLOWER));

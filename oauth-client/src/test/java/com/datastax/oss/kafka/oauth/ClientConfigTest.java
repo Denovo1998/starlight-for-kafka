@@ -57,18 +57,12 @@ public class ClientConfigTest {
 
     @Test
     public void testInvalidUrl() {
-        try {
-            ClientConfigHelper.create("xxx", "file:///tmp/key.json");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            Assert.assertTrue(e.getMessage().startsWith("invalid " + ClientConfig.OAUTH_ISSUER_URL + " \"xxx\""));
-        }
+        IllegalArgumentException issuerError = Assert.expectThrows(IllegalArgumentException.class,
+                () -> ClientConfigHelper.create("xxx", "file:///tmp/key.json"));
+        Assert.assertTrue(issuerError.getMessage().startsWith("invalid " + ClientConfig.OAUTH_ISSUER_URL));
 
-        try {
-            ClientConfigHelper.create("https://issuer-url.com", "xxx");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            Assert.assertTrue(e.getMessage().startsWith("invalid " + ClientConfig.OAUTH_CREDENTIALS_URL + " \"xxx\""));
-        }
+        IllegalArgumentException credentialsError = Assert.expectThrows(IllegalArgumentException.class,
+                () -> ClientConfigHelper.create("https://issuer-url.com", "unsupported:///key.json"));
+        Assert.assertTrue(credentialsError.getMessage().startsWith("invalid " + ClientConfig.OAUTH_CREDENTIALS_URL));
     }
 }

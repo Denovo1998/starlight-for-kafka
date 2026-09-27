@@ -14,6 +14,7 @@
 package com.datastax.oss.kafka.oauth;
 
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Map;
 import lombok.Getter;
@@ -53,8 +54,8 @@ public class ClientConfig {
             throw new IllegalArgumentException("no key for " + OAUTH_CREDENTIALS_URL);
         }
         try {
-            this.credentialsUrl = new URL(credentialsUrlString);
-        } catch (MalformedURLException e) {
+            this.credentialsUrl = com.datastax.oss.kafka.oauth.url.URL.createURL(credentialsUrlString);
+        } catch (MalformedURLException | URISyntaxException | InstantiationException | IllegalAccessException e) {
             throw new IllegalArgumentException(String.format(
                     "invalid %s \"%s\": %s", OAUTH_CREDENTIALS_URL, credentialsUrlString, e.getMessage()));
         }

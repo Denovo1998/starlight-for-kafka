@@ -24,9 +24,12 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Objects;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ClientCredentialsFlowTest {
@@ -53,6 +56,28 @@ public class ClientCredentialsFlowTest {
         Assert.assertEquals(clientInfo.getId(), "my-id");
         Assert.assertEquals(clientInfo.getSecret(), "my-secret");
         Assert.assertEquals(clientInfo.getTenant(), "my-tenant");
+    }
+
+    @DataProvider(name = "credentialUrls")
+    public Object[][] credentialUrls() throws Exception {
+        String json = "{\"client_id\":\"my-id\",\"client_secret\":\"my-secret\",\"tenant\":\"my-tenant\"}";
+        return new Object[][]{
+                {"data:application/json;base64," + Base64.getEncoder().encodeToString(
+                        json.getBytes(StandardCharsets.UTF_8))},
+                {"data:application/json," + java.net.URLEncoder.encode(json, StandardCharsets.UTF_8)},
+                {java.nio.file.Path.of(getClass().getClassLoader().getResource("private_key.json").toURI()).toString()}
+        };
+    }
+
+    @Test(dataProvider = "credentialUrls")
+    public void testLoadPrivateKeyFromUrl(String credentialsUrl) throws Exception {
+        try (ClientCredentialsFlow flow = new ClientCredentialsFlow(
+                ClientConfigHelper.create("http://localhost:4444", credentialsUrl))) {
+            ClientCredentialsFlow.ClientInfo info = flow.loadPrivateKey();
+            Assert.assertEquals(info.getId(), "my-id");
+            Assert.assertEquals(info.getSecret(), "my-secret");
+            Assert.assertEquals(info.getTenant(), "my-tenant");
+        }
     }
 
     @Test

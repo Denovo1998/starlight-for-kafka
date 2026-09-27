@@ -25,6 +25,7 @@ import io.streamnative.pulsar.handlers.kop.MessageFetchContext;
 import io.streamnative.pulsar.handlers.kop.MessagePublishContext;
 import io.streamnative.pulsar.handlers.kop.PendingTopicFutures;
 import io.streamnative.pulsar.handlers.kop.RequestStats;
+import io.streamnative.pulsar.handlers.kop.exceptions.KoPTopicInitializeException;
 import io.streamnative.pulsar.handlers.kop.exceptions.MetadataCorruptedException;
 import io.streamnative.pulsar.handlers.kop.format.DecodeResult;
 import io.streamnative.pulsar.handlers.kop.format.EncodeRequest;
@@ -83,6 +84,7 @@ import org.apache.kafka.common.message.FetchResponseData;
 import org.apache.kafka.common.protocol.Errors;
 import org.apache.kafka.common.record.CompressionType;
 import org.apache.kafka.common.record.MemoryRecords;
+import org.apache.kafka.common.record.Record;
 import org.apache.kafka.common.record.RecordBatch;
 import org.apache.kafka.common.requests.FetchResponse;
 import org.apache.kafka.common.utils.Time;
@@ -179,7 +181,7 @@ public class PartitionLog {
     public CompletableFuture<PartitionLog> initialise() {
         loadTopicProperties().whenComplete((___, errorLoadTopic) -> {
             if (errorLoadTopic != null) {
-                initFuture.completeExceptionally(errorLoadTopic);
+                initFuture.completeExceptionally(new KoPTopicInitializeException(errorLoadTopic));
                 return;
             }
             if (kafkaConfig.isKafkaTransactionCoordinatorEnabled()
@@ -188,7 +190,7 @@ public class PartitionLog {
                         .recover(this, recoveryExecutor)
                         .thenRun(() -> initFuture.complete(this))
                         .exceptionally(error -> {
-                            initFuture.completeExceptionally(error);
+                            initFuture.completeExceptionally(new KoPTopicInitializeException(error));
                             return null;
                         });
             } else {
@@ -1023,7 +1025,15 @@ public class PartitionLog {
             batch.ensureValid();
             shallowMessageCount += 1;
             validBytesCount += batchSize;
-            numMessages += (batch.lastOffset() - batch.baseOffset() + 1);
+            int numMessagesInBatch = (int) (batch.lastOffset() - batch.baseOffset() + 1);
+            if (numMessagesInBatch <= 1) {
+                // Legacy compressed producers such as Sarama may leave the wrapper offset unset.
+                for (Record ignored : batch) {
+                    numMessages++;
+                }
+            } else {
+                numMessages += numMessagesInBatch;
+            }
             isTransaction = batch.isTransactional();
             isControlBatch = batch.isControlBatch();
 

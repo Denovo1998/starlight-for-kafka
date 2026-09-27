@@ -658,6 +658,7 @@ public class KafkaProtocolHandler implements ProtocolHandler, TenantContextManag
 
         OffsetConfig offsetConfig = OffsetConfig.builder()
             .offsetsTopicName(topicName)
+            .offsetCommitTimeoutMs(kafkaConfig.getOffsetCommitTimeoutMs())
             .offsetsTopicNumPartitions(offsetTopicNumPartitions)
             .offsetsTopicCompressionType(CompressionType.valueOf(kafkaConfig.getOffsetsTopicCompressionCodec()))
             .maxMetadataSize(kafkaConfig.getOffsetMetadataMaxSize())

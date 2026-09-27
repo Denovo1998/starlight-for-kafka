@@ -201,6 +201,12 @@ public class KafkaServiceConfiguration extends ServiceConfiguration {
 
     @FieldContext(
             category = CATEGORY_KOP,
+            doc = "Offset commit waits for persistence until this timeout in milliseconds"
+    )
+    private int offsetCommitTimeoutMs = OffsetConfig.DefaultOffsetCommitTimeoutMs;
+
+    @FieldContext(
+            category = CATEGORY_KOP,
             doc = "send queue size of system client to produce system topic."
     )
     private int kafkaMetaMaxPendingMessages = 10000;

@@ -39,6 +39,13 @@
   <dependencies>
     <dependency>
       <groupId>com.datastax.oss</groupId>
+      <artifactId>kafka-payload-processor-original</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.datastax.oss</groupId>
       <artifactId>kafka-client-api</artifactId>
       <version>${project.version}</version>
     </dependency>

@@ -222,7 +222,7 @@ public class GroupMetadataManager {
         this.offsetConfig = offsetConfig;
         this.compressionType = offsetConfig.offsetsTopicCompressionType();
         this.offsetTopic = new CompactedPartitionedTopic<>(client.getPulsarClient(), Schema.BYTEBUFFER,
-                client.getMaxPendingMessages(), offsetConfig.offsetsTopicName(), scheduler,
+                client.getMaxPendingMessages(), offsetConfig, scheduler,
                 buffer -> buffer.limit() == 0);
         this.scheduler = scheduler;
         this.time = time;
@@ -364,6 +364,9 @@ public class GroupMetadataManager {
             return Errors.NONE;
         }, scheduler).exceptionally(cause -> {
             log.error("Coordinator failed to store group {}", groupId, cause);
+            if (FutureUtil.unwrapCompletionException(cause) instanceof PulsarClientException.TimeoutException) {
+                return Errors.REBALANCE_IN_PROGRESS;
+            }
             return Errors.COORDINATOR_NOT_AVAILABLE;
         });
     }
@@ -517,8 +520,11 @@ public class GroupMetadataManager {
                                 + " when appending to log due to {}",
                         filteredOffsetMetadata, group.groupId(), consumerId, group.generationId(), cause.getMessage());
 
-                if (cause.getCause() instanceof PulsarClientException.AlreadyClosedException) {
+                Throwable error = FutureUtil.unwrapCompletionException(cause);
+                if (error instanceof PulsarClientException.AlreadyClosedException) {
                     return Errors.NOT_COORDINATOR;
+                } else if (error instanceof PulsarClientException.TimeoutException) {
+                    return Errors.REQUEST_TIMED_OUT;
                 }
                 return Errors.UNKNOWN_SERVER_ERROR;
             })

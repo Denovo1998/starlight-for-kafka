@@ -13,12 +13,18 @@
  */
 package io.streamnative.pulsar.handlers.kop.storage;
 
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import io.streamnative.pulsar.handlers.kop.KafkaServiceConfiguration;
 import io.streamnative.pulsar.handlers.kop.KafkaTopicLookupService;
+import io.streamnative.pulsar.handlers.kop.exceptions.KoPTopicInitializeException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.bookkeeper.common.util.OrderedExecutor;
 import org.apache.kafka.common.TopicPartition;
@@ -32,6 +38,7 @@ import org.apache.kafka.common.record.MemoryRecordsBuilder;
 import org.apache.kafka.common.record.RecordBatch;
 import org.apache.kafka.common.record.TimestampType;
 import org.apache.kafka.common.utils.Time;
+import org.apache.pulsar.common.util.FutureUtil;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -55,6 +62,20 @@ public class PartitionLogTest {
             new MemoryProducerStateManagerSnapshotBuffer(),
             mock(OrderedExecutor.class));
 
+    @Test
+    public void testInitialisationFailureRetainsCause() {
+        KafkaTopicLookupService lookupService = mock(KafkaTopicLookupService.class);
+        IllegalStateException failure = new IllegalStateException("topic lookup failed");
+        when(lookupService.getTopic(anyString(), any())).thenReturn(CompletableFuture.failedFuture(failure));
+        PartitionLog log = new PartitionLog(kafkaConfig, null, Time.SYSTEM, new TopicPartition("test", 1),
+                "test", null, lookupService, new MemoryProducerStateManagerSnapshotBuffer(),
+                mock(OrderedExecutor.class));
+        CompletionException error = Assert.expectThrows(CompletionException.class, () -> log.initialise().join());
+        Assert.assertTrue(error.getCause() instanceof KoPTopicInitializeException);
+        Assert.assertSame(FutureUtil.unwrapCompletionException(error.getCause().getCause()), failure);
+        Assert.assertTrue(log.isInitialisationFailed());
+    }
+
     @DataProvider(name = "compressionTypes")
     Object[] allCompressionTypes() {
         return Arrays.stream(CompressionType.values()).map(x -> (Object) x).toArray();
@@ -73,6 +94,24 @@ public class PartitionLogTest {
         Assert.assertTrue(appendInfo.firstOffset().isPresent());
         Assert.assertEquals(appendInfo.firstOffset().get().longValue(), 0);
         Assert.assertFalse(appendInfo.isTransaction());
+    }
+
+    @DataProvider(name = "compressionTypesForSarama")
+    public static Object[] compressionTypesForSarama() {
+        return Arrays.stream(CompressionType.values()).filter(t ->
+                        t.id > CompressionType.NONE.id && t.id < CompressionType.ZSTD.id
+                ).map(x -> (Object) x).toArray();
+    }
+
+    @Test(dataProvider = "compressionTypesForSarama")
+    public void testAnalyzeSaramaV1CompressedRecords(CompressionType compressionType) throws Exception {
+        final SaramaCompressedV1Records builder = new SaramaCompressedV1Records(compressionType);
+        for (int i = 0; i < 3; i++) {
+            builder.appendLegacyRecord(i, "msg-" + i);
+        }
+        final MemoryRecords records = builder.build();
+        PartitionLog.LogAppendInfo appendInfo = PARTITION_LOG.analyzeAndValidateRecords(records);
+        Assert.assertEquals(appendInfo.numMessages(), 3);
     }
 
     @Test

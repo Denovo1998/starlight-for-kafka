@@ -14,6 +14,7 @@
 package io.streamnative.pulsar.handlers.kop.coordinator;
 
 import com.google.common.collect.Sets;
+import io.streamnative.pulsar.handlers.kop.coordinator.group.OffsetConfig;
 import io.streamnative.pulsar.handlers.kop.utils.CoreUtils;
 import java.io.Closeable;
 import java.io.IOException;
@@ -69,8 +70,29 @@ public class CompactedPartitionedTopic<T> implements Closeable {
                                      final String topic,
                                      final Executor executor,
                                      final Function<T, Boolean> valueIsEmpty) {
+        this(client, schema, maxPendingMessages, topic, executor, valueIsEmpty, 30000);
+    }
+
+    public CompactedPartitionedTopic(final PulsarClient client,
+                                     final Schema<T> schema,
+                                     final int maxPendingMessages,
+                                     final OffsetConfig offsetConfig,
+                                     final Executor executor,
+                                     final Function<T, Boolean> valueIsEmpty) {
+        this(client, schema, maxPendingMessages, offsetConfig.offsetsTopicName(), executor, valueIsEmpty,
+                offsetConfig.offsetCommitTimeoutMs());
+    }
+
+    private CompactedPartitionedTopic(final PulsarClient client,
+                                      final Schema<T> schema,
+                                      final int maxPendingMessages,
+                                      final String topic,
+                                      final Executor executor,
+                                      final Function<T, Boolean> valueIsEmpty,
+                                      final int sendTimeoutMs) {
         this.producerBuilder = client.newProducer(schema)
                 .maxPendingMessages(maxPendingMessages)
+                .sendTimeout(sendTimeoutMs, TimeUnit.MILLISECONDS)
                 .blockIfQueueFull(true);
         this.readerBuilder = client.newReader(schema)
                 .startMessageId(MessageId.earliest)

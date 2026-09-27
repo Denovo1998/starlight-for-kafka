@@ -221,7 +221,7 @@ public class PulsarTopicProducerStateManagerSnapshotBuffer implements ProducerSt
         });
     }
 
-    private static ByteBuffer serialize(ProducerStateManagerSnapshot snapshot) {
+    static ByteBuffer serialize(ProducerStateManagerSnapshot snapshot) {
 
         ByteBuf byteBuf = Unpooled.buffer();
         try (DataOutputStream dataOutputStream =
@@ -288,7 +288,7 @@ public class PulsarTopicProducerStateManagerSnapshotBuffer implements ProducerSt
         }
     }
 
-    private static ProducerStateManagerSnapshot deserialize(ByteBuffer buffer) {
+    static ProducerStateManagerSnapshot deserialize(ByteBuffer buffer) {
         try (DataInputStream dataInputStream =
                      new DataInputStream(new ByteBufInputStream(Unpooled.wrappedBuffer(buffer)));) {
             String topicPartition = dataInputStream.readUTF();

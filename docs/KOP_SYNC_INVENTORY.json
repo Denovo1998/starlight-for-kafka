@@ -1,0 +1,497 @@
+{
+  "upstreamCommit": "14f9832d8a437c5b717e3c74fd7e4cda9810aff7",
+  "targetBaseCommit": "766d9891c97fb82024f0185628ca956315a570dc",
+  "missingPathCount": 98,
+  "files": [
+    {
+      "upstream": ".github/CODEOWNERS",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": ".github/PULL_REQUEST_TEMPLATE.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": ".github/workflows/release.yaml",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docker-compose-cluster.yaml",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/configuration.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/cve_list.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/implementation.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/kop-architecture.png",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/kop.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/kop.yaml",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/reference-metrics.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/release-process.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/schema.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/security.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "docs/upgrade.md",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "kafka-impl/src/assemble/bin.xml",
+      "status": "非缺失功能源码；保留当前仓库文档/发布/部署配置",
+      "destination": "—"
+    },
+    {
+      "upstream": "kafka-impl/src/main/java/io/streamnative/pulsar/handlers/kop/exceptions/KoPTopicInitializeException.java",
+      "status": "已同步",
+      "destination": "kafka-impl/src/main/java/io/streamnative/pulsar/handlers/kop/exceptions/KoPTopicInitializeException.java"
+    },
+    {
+      "upstream": "kafka-impl/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/ServerConfigTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "kafka-impl/src/test/java/com/datastax/oss/kafka/oauth/ServerConfigTest.java"
+    },
+    {
+      "upstream": "kafka-payload-processor-shaded-tests/pom.xml",
+      "status": "已同步",
+      "destination": "kafka-payload-processor-shaded-tests/pom.xml"
+    },
+    {
+      "upstream": "kafka-payload-processor-shaded-tests/src/test/java/io/streamnative/pulsar/handlers/kop/ByteBufferPayload.java",
+      "status": "已同步",
+      "destination": "kafka-payload-processor-shaded-tests/src/test/java/io/streamnative/pulsar/handlers/kop/ByteBufferPayload.java"
+    },
+    {
+      "upstream": "kafka-payload-processor-shaded-tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaPayloadProcessorTest.java",
+      "status": "已同步",
+      "destination": "kafka-payload-processor-shaded-tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaPayloadProcessorTest.java"
+    },
+    {
+      "upstream": "kafka-payload-processor-shaded-tests/src/test/java/io/streamnative/pulsar/handlers/kop/MockedMessagePayloadContext.java",
+      "status": "已同步",
+      "destination": "kafka-payload-processor-shaded-tests/src/test/java/io/streamnative/pulsar/handlers/kop/MockedMessagePayloadContext.java"
+    },
+    {
+      "upstream": "kafka-payload-processor-shaded/pom.xml",
+      "status": "已同步",
+      "destination": "kafka-payload-processor-shaded/pom.xml"
+    },
+    {
+      "upstream": "kafka-payload-processor/pom.xml",
+      "status": "已同步",
+      "destination": "kafka-payload-processor/pom.xml"
+    },
+    {
+      "upstream": "kafka-payload-processor/src/main/java/io/streamnative/pulsar/handlers/kop/KafkaPayloadProcessor.java",
+      "status": "已同步",
+      "destination": "kafka-payload-processor/src/main/java/io/streamnative/pulsar/handlers/kop/KafkaPayloadProcessor.java"
+    },
+    {
+      "upstream": "kafka-payload-processor/src/main/java/io/streamnative/pulsar/handlers/kop/package-info.java",
+      "status": "已同步",
+      "destination": "kafka-payload-processor/src/main/java/io/streamnative/pulsar/handlers/kop/package-info.java"
+    },
+    {
+      "upstream": "oauth-client-shaded-test/pom.xml",
+      "status": "已有打包职责；保留现有单模块 shade 方式",
+      "destination": "oauth-client/pom.xml"
+    },
+    {
+      "upstream": "oauth-client-shaded-test/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/ClientConfigHelper.java",
+      "status": "已有测试，包和模块不同",
+      "destination": "oauth-client/src/test/java/com/datastax/oss/kafka/oauth/ClientConfigHelper.java"
+    },
+    {
+      "upstream": "oauth-client-shaded-test/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/ClientConfigTest.java",
+      "status": "已有测试，包和模块不同",
+      "destination": "oauth-client/src/test/java/com/datastax/oss/kafka/oauth/ClientConfigTest.java"
+    },
+    {
+      "upstream": "oauth-client-shaded-test/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/ClientCredentialsFlowTest.java",
+      "status": "已有测试，包和模块不同",
+      "destination": "oauth-client/src/test/java/com/datastax/oss/kafka/oauth/ClientCredentialsFlowTest.java"
+    },
+    {
+      "upstream": "oauth-client-shaded-test/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/ShadedTest.java",
+      "status": "已有打包职责；保留现有单模块 shade 方式",
+      "destination": "oauth-client/pom.xml"
+    },
+    {
+      "upstream": "oauth-client-shaded-test/src/test/resources/private_key.json",
+      "status": "已有同名测试资源",
+      "destination": "oauth-client/src/test/resources/private_key.json"
+    },
+    {
+      "upstream": "oauth-client-shaded-test/src/test/resources/private_key_with_group_id.json",
+      "status": "按确认范围保留差异：授权设计",
+      "destination": "—"
+    },
+    {
+      "upstream": "oauth-client-shaded/pom.xml",
+      "status": "已有打包职责；保留现有单模块 shade 方式",
+      "destination": "oauth-client/pom.xml"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/ClientConfig.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/ClientConfig.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/ClientCredentialsFlow.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/ClientCredentialsFlow.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/ClientInfo.java",
+      "status": "已有内嵌类；group_id 扩展按确认范围不迁移",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/ClientCredentialsFlow.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/OAuthBearerTokenImpl.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/OAuthBearerTokenImpl.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/OauthLoginCallbackHandler.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/OauthLoginCallbackHandler.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/package-info.java",
+      "status": "已有对应包说明",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/package-info.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/url/DataURLStreamHandler.java",
+      "status": "已同步并适配包名",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/url/DataURLStreamHandler.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/url/PulsarURLStreamHandlerFactory.java",
+      "status": "已同步并适配包名",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/url/PulsarURLStreamHandlerFactory.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/url/URL.java",
+      "status": "已同步并适配包名",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/url/URL.java"
+    },
+    {
+      "upstream": "oauth-client/src/main/java/io/streamnative/pulsar/handlers/kop/security/oauth/url/package-info.java",
+      "status": "已同步并适配包名",
+      "destination": "oauth-client/src/main/java/com/datastax/oss/kafka/oauth/url/package-info.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/OffsetTopicWriteTimeoutTest.java",
+      "status": "已同步",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/OffsetTopicWriteTimeoutTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/admin/KafkaAdminTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaAdminTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/admin/KopBrokerLookupManagerTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KopBrokerLookupManagerTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/admin/OffsetResetTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/OffsetResetTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/coordinator/transaction/TransactionTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/TransactionTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/coordinator/transaction/TransactionWithOAuthBearerAuthTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/TransactionWithOAuthBearerAuthTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/BasicEndToEndKafkaTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/BasicEndToEndKafkaTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/BasicEndToEndPulsarTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/BasicEndToEndPulsarTest.java, tests/src/test/java/io/streamnative/pulsar/handlers/kop/compatibility/BasicEndToEndPulsarTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/BasicEndToEndTestBase.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/BasicEndToEndTestBase.java, tests/src/test/java/io/streamnative/pulsar/handlers/kop/compatibility/BasicEndToEndTestBase.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/DistributedClusterTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/DistributedClusterTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/KafkaMessageOrderKafkaTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaMessageOrderKafkaTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/KafkaMessageOrderPulsarTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaMessageOrderPulsarTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/KafkaMessageOrderTestBase.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaMessageOrderTestBase.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/KafkaNonPartitionedTopicTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaNonPartitionedTopicTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/MultiLedgerTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MultiLedgerTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/e2e/PerTopicConfigurationTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/PerTopicConfigurationTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/metadata/DifferentNamespaceTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/DifferentNamespaceTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/metadata/MetadataInitTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MetadataInitTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/metrics/KafkaProducerStatsTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaProducerStatsTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/metrics/MetricsProviderTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MetricsProviderTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/metrics/MetricsProviderWithDisableGroupLevelConsumerMetricsTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MetricsProviderWithDisableGroupLevelConsumerMetricsTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/IdempotentProducerTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/IdempotentProducerTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/InnerTopicProtectionTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/InnerTopicProtectionTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/MessagePublishBufferThrottleKafkaTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MessagePublishBufferThrottleKafkaTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/MessagePublishBufferThrottlePulsarTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MessagePublishBufferThrottlePulsarTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/MessagePublishBufferThrottleTestBase.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MessagePublishBufferThrottleTestBase.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/MessagePublishThrottlingTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/MessagePublishThrottlingTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/PreciselyMessagePublishThrottlingTest.java",
+      "status": "已同步并适配现有测试基类",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/PreciselyMessagePublishThrottlingTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/producer/PublishRateLimitTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/PublishRateLimitTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/schemaregistry/model/impl/SchemaRegistryTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SchemaRegistryTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/schemaregistry/model/impl/SchemaRestApiTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SchemaRestApiTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/KafkaSSLChannelTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaSSLChannelTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/KafkaSSLChannelWithClientAuthTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaSSLChannelWithClientAuthTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/SaslPlainKafkaTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SaslPlainKafkaTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/SaslPlainPulsarTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SaslPlainPulsarTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/SaslPlainTestBase.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SaslPlainTestBase.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/auth/DelayAuthorizationFailedCloseTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/DelayAuthorizationFailedCloseTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/auth/KafkaAuthorizationKafkaMultitenantTenantMetadataTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaAuthorizationKafkaMultitenantTenantMetadataTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/auth/KafkaAuthorizationMockTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaAuthorizationMockTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/auth/KafkaAuthorizationMockTestBase.java",
+      "status": "按确认范围保留差异：授权设计",
+      "destination": "—"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/auth/KafkaAuthorizationPulsarTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaAuthorizationPulsarTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/auth/KafkaAuthorizationTestBase.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/KafkaAuthorizationTestBase.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/auth/SlowAuthorizationTest.java",
+      "status": "按确认范围保留差异：授权设计",
+      "destination": "—"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/CustomOAuthBearerCallbackHandlerTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/CustomOAuthBearerCallbackHandlerTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/HydraOAuthUtils.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/HydraOAuthUtils.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/SaslOAuthBearerTestBase.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SaslOAuthBearerTestBase.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/SaslOAuthDefaultHandlersTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SaslOAuthDefaultHandlersTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/SaslOAuthKopHandlersTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SaslOAuthKopHandlersTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/SaslOAuthKopHandlersWithGroupIdTest.java",
+      "status": "按确认范围保留差异：授权设计",
+      "destination": "—"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/security/oauth/SaslOAuthKopHandlersWithMultiTenantTest.java",
+      "status": "已有同名类，路径/包不同（未宣称实现完全等同）",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/SaslOAuthKopHandlersWithMultiTenantTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/ProducerStateManagerSnapshotBufferTestBase.java",
+      "status": "已同步",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/ProducerStateManagerSnapshotBufferTestBase.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/PulsarPartitionedTopicProducerStateManagerSnapshotBufferTest.java",
+      "status": "已同步",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/PulsarPartitionedTopicProducerStateManagerSnapshotBufferTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/PulsarTopicProducerStateManagerSnapshotBufferTest.java",
+      "status": "已同步",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/PulsarTopicProducerStateManagerSnapshotBufferTest.java"
+    },
+    {
+      "upstream": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/SaramaCompressedV1Records.java",
+      "status": "已同步",
+      "destination": "tests/src/test/java/io/streamnative/pulsar/handlers/kop/storage/SaramaCompressedV1Records.java"
+    }
+  ]
+}
